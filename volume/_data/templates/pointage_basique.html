@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pointage</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        form { margin-bottom: 20px; }
+        select, input { margin-right: 10px; padding: 5px; }
+        button { padding: 5px 10px; }
+        .logout { float: right; }
+    </style>
+</head>
+<body>
+    <h2>check report SETEX2</h2>
+    <a href="{{ url_for('logout') }}" class="logout"><button>Déconnexion</button></a>
+    <form method="POST">
+        <label>Matricule:</label>
+        <select name="matricule_option">
+            <option value="ALL">TOUS</option>
+            <option value="manual">Insertion manuelle</option>
+        </select>
+        <input type="text" name="matricule_input" placeholder="Entrez le matricule">
+
+        <label>Agent:</label>
+        <select name="prenom_option">
+            <option value="ALL">TOUS</option>
+            <option value="manual">Insertion manuelle</option>
+        </select>
+        <input type="text" name="prenom_input" placeholder="Entrez le prénom">
+
+        <label>Date début:</label>
+        <input type="date" name="start_date" value="{{ start_date }}">
+
+        <label>Date fin:</label>
+        <input type="date" name="end_date" value="{{ end_date }}">
+
+        <button type="submit">Filtrer</button>
+        <button type="submit" name="export" value="true">Exporter en Excel</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Matricule</th>
+                <th>Prénom</th>
+                <th>Date</th>
+                <th>Pointage 1</th>
+                <th>Pointage 2</th>
+                <th>Pointage 3</th>
+                <th>Pointage 4</th>
+                <th>Pointage 5</th>
+                <th>Pointage 6</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+                <tr>
+                    <td>{{ row.matricule }}</td>
+                    <td>{{ row.prenom }}</td>
+                    <td>{{ row.date }}</td>
+                    <td>{{ row.pointage_1 }}</td>
+                    <td>{{ row.pointage_2 }}</td>
+                    <td>{{ row.pointage_3 }}</td>
+                    <td>{{ row.pointage_4 }}</td>
+                    <td>{{ row.pointage_5 }}</td>
+                    <td>{{ row.pointage_6 }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
