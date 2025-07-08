@@ -11,7 +11,7 @@ app.secret_key = 'your_secret_key'
 db_config = {
     'host': '192.168.60.15',
     'user': 'pointeuse',
-    'password': 'just4SI***',
+    'password': 'your_mdp***',
     'database': 'pointeuse'
 }
 
@@ -21,7 +21,7 @@ def init_db():
     conn = sqlite3.connect('users.db')
     c = conn.cursor()
     c.execute('''CREATE TABLE IF NOT EXISTS users (username TEXT PRIMARY KEY, password TEXT)''')
-    c.execute('''INSERT OR IGNORE INTO users (username, password) VALUES ('admin', 'admin123')''')
+    c.execute('''INSERT OR IGNORE INTO users (username, password) VALUES ('admin', 'your_mdp')''')
     conn.commit()
     conn.close()
 
